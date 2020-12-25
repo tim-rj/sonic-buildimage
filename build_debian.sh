@@ -492,6 +492,10 @@ if [ -f sonic_debian_extension.sh ]; then
     ./sonic_debian_extension.sh $FILESYSTEM_ROOT $PLATFORM_DIR
 fi
 
+if [ "$ENABLE_GCOV" == "y" ]; then
+    sudo ./gcov_support.sh collect
+fi
+
 ## Organization specific extensions such as Configuration & Scripts for features like AAA, ZTP...
 if [ "${enable_organization_extensions}" = "y" ]; then
    if [ -f files/build_templates/organization_extensions.sh ]; then

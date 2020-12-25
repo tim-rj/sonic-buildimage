@@ -35,7 +35,11 @@ ifeq ($(NOJESSIE), 0)
 	make -f Makefile.work $@
 endif
 ifeq ($(NOSTRETCH), 0)
-	BLDENV=stretch make -f Makefile.work $@
+    ifeq "$(ENABLE_GCOV)" "y"
+		BLDENV=stretch make -f Makefile.work ENABLE_GCOV=y $@
+    else
+		BLDENV=stretch make -f Makefile.work $@
+    endif
 endif
 	BLDENV=buster make -f Makefile.work $@
 
